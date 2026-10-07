@@ -19,3 +19,10 @@
     * UNIQUE can be used as constraint on multiple keys, multiple combinations, etc. and accepts nulls by default (can set NULLS NOT DISTINCT)
     * should always use TIMESTAMPTZ
     * remember foreign keys and indexes
+
+## step 2
+* java records are shorthand to set up immutable data carriers, instead of defining a class that has getter and setters and equals and hash, you can do it in one line and just define the fields and their data types
+    * if you add a constructor after the component list this is a compact constructor - lets you define code to run before fields are assigned
+* @Bean vs @Component - @Bean goes on a method, @Component goes on a class. Both register beans (designating the result for injection into dependencies), but you use @Bean when you can't annotate the class (like Clock, which belongs to the jdk)
+    * Constructor parameters say what beans a class needs
+* you call a library, a framework "calls" you (your code)
