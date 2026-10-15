@@ -4,6 +4,9 @@ services:
     container_name: local-postgres
     restart: unless-stopped
     environment:
+      # These only take effect the first time the data volume is created.
+      POSTGRES_USER: budget
+      POSTGRES_DB: zero_budget
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports:
       - "5432:5432"
@@ -11,14 +14,10 @@ services:
       # Postgres 18+ images keep data under /var/lib/postgresql (not .../data)
       - postgres_data:/var/lib/postgresql
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      test: ["CMD-SHELL", "pg_isready -U budget -d zero_budget"]
       interval: 5s
       timeout: 3s
       retries: 10
 
 volumes:
   postgres_data:
-    # Adopt the existing anonymous volume so the current data
-    # (including spotify_dashboard_db) is kept.
-    external: true
-    name: 03c9f980e0e2dc3410d7911ec20b748b58d0f6e1a377b4010276dda2a54f1a8a

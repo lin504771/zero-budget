@@ -34,3 +34,4 @@ build/
 
 .env
 data/
+budget_service_guide.md
