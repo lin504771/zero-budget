@@ -1,0 +1,6 @@
+Transaction Date,Posted Date,Card No.,Description,Category,Debit,Credit
+2025-03-01,2025-03-02,1111,Blue Bottle Coffee,Dining,4.50,
+2025-03-03,not-a-date,1111,Bad Date Place,Dining,9.99,
+2025-03-04,2025-03-05,1111,,Dining,3.00,
+2025-03-05,2025-03-06,1111,Lunch Place,Dining,12.00,
+2025-03-06,2025-03-07,1111,Bad Amount,Dining,abc,
