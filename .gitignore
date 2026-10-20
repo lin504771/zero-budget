@@ -35,3 +35,8 @@ build/
 .env
 data/
 budget_service_guide.md
+
+# Real bank exports must never be committed; only the fake test fixtures are allowed.
+# Order matters: the "!" rule re-allows files that the line above ignored.
+*.csv
+!src/test/resources/fixtures/*.csv
