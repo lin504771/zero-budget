@@ -16,6 +16,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import com.zachary.zero_budget.PostgresContainerConfig;
 import com.zachary.zero_budget.config.ClockConfig;
 
 /**
@@ -31,7 +32,8 @@ import com.zachary.zero_budget.config.ClockConfig;
 @JdbcTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @Import({IngestionService.class, CsvTransactionParser.class, TransactionValidator.class, ClockConfig.class,
-        AccountRepository.class, ImportFileRepository.class, TransactionRepository.class})
+        AccountRepository.class, ImportFileRepository.class, TransactionRepository.class,
+        PostgresContainerConfig.class})
 class IngestionServiceTest {
 
     private static final String ACCOUNT = "test-account";

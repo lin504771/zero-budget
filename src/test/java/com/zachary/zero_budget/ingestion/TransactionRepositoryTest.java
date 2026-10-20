@@ -16,8 +16,11 @@ import org.springframework.context.annotation.Import;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import com.zachary.zero_budget.PostgresContainerConfig;
+
 /**
- * Integration test: it talks to the real Postgres from docker compose (run `docker compose up -d`).
+ * Integration test: it talks to a real Postgres that Testcontainers starts in Docker
+ * (see {@link PostgresContainerConfig}); Docker must be running, but no manual setup is needed.
  *
  * <ul>
  *   <li>{@code @JdbcTest} starts only the database layer (DataSource, JdbcTemplate, Flyway), not
@@ -28,11 +31,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
  *   <li>{@code @Import} is needed because {@code @JdbcTest} does not component-scan
  *       {@code @Repository} classes on its own.</li>
  * </ul>
- * Step 3 of the guide replaces the docker-compose dependency with Testcontainers.
  */
 @JdbcTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@Import(TransactionRepository.class)
+@Import({TransactionRepository.class, PostgresContainerConfig.class})
 class TransactionRepositoryTest {
 
     @Autowired
